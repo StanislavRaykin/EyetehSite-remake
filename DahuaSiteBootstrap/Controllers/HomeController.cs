@@ -64,18 +64,18 @@ namespace DahuaSiteBootstrap.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SendMail(MailModel mail)
         {
-            
 
+            string res = string.Empty;
             try
             {
                 Support sitesupport = new Support();
-                string result = await sitesupport.SendEmail(mail);
+                res = await sitesupport.SendEmail(mail);
 
                 // Return proper JSON response
                 return Json(new
                 {
                     success = true,
-                    message = result.Replace("ERR", ""),
+                    message = res.Replace("ERR", ""),
                     messageType = "sent"
                 });
             }
@@ -84,7 +84,7 @@ namespace DahuaSiteBootstrap.Controllers
                 return Json(new
                 {
                     success = false,
-                    message = "Error",
+                    message = res,
                     messageType = "error"
                 });
             }
