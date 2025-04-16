@@ -1,7 +1,8 @@
-﻿document.getElementById("mailform").addEventListener("submit", function (e) {
-    e.preventDefault();
-    submitContactForm(this);
-});
+﻿//document.getElementById("mailform1").addEventListener("submit", function (e) {
+//    e.preventDefault();
+//    const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+//    submitContactForm(this, token);
+//});
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("form").addEventListener("submit", function (ev) {
@@ -12,59 +13,59 @@ document.addEventListener("DOMContentLoaded", function () {
     })
 })
 
-async function submitForm(form, antiForgeryToken) {
-    const data = new FormData(form);
-    const req = await fetch("api/Filtering/term", {
-        method: form.method,
-        body: JSON.stringify(),
-        headers = {
-            'RequestVerificationToken': antiForgeryToken
-        }
-    });
+//async function submitForm(form, antiForgeryToken) {
+//    const data = new FormData(form);
+//    const req = await fetch("api/Filtering/term", {
+//        method: form.method,
+//        body: JSON.stringify(),
+//        headers = {
+//            'RequestVerificationToken': antiForgeryToken
+//        }
+//    });
     
-    const res = await req.text();
-    console.log(res);
-    document.getElementById("result").textContent = res;
-}
+//    const res = await req.text();
+//    console.log(res);
+//    document.getElementById("result").textContent = res;
+//}
 
-async function submitContactForm(form) {
-    try {
-        // Fix 2: Add loading state
-        document.querySelector('.loading').style.display = 'block';
+//async function submitContactForm(form,aftoken) {
+//    try {
+//        // Fix 2: Add loading state
+//        document.querySelector('.loading').style.display = 'block';
 
-        const formData = new FormData(form);
-        const response = await fetch(form.action, {
-            method: form.method,
-            body: formData,
-            // Fix 3: Add anti-forgery token
-            headers: {
-                'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
-            }
-        });
+//        const formData = new FormData(form);
+//        const response = await fetch(form.action, {
+//            method: form.method,
+//            body: formData,
+//            // Fix 3: Add anti-forgery token
+//            headers: {
+//                'RequestVerificationToken': aftoken
+//            }
+//        });
 
-        if (!response.ok) throw new Error('Network response was not ok');
+//        if (!response.ok) throw new Error('Network response was not ok');
 
-        const result = await response.json();
+//        const result = await response.json();
 
-        // Fix 4: Update UI with result
-        document.querySelector('.loading').style.display = 'none';
-        const resultDiv = document.querySelector('#result .error-message, #result .sent-message') ||
-            document.createElement('div');
-        resultDiv.className = 'sent-message';
-        resultDiv.textContent = result.message;
-        resultDiv.style.display = 'flex';
-        document.getElementById('result').appendChild(resultDiv);
+//        // Fix 4: Update UI with result
+//        document.querySelector('.loading').style.display = 'none';
+//        const resultDiv = document.querySelector('#result .error-message, #result .sent-message') ||
+//            document.createElement('div');
+//        resultDiv.className = 'sent-message';
+//        resultDiv.textContent = result.message;
+//        resultDiv.style.display = 'flex';
+//        document.getElementById('result').appendChild(resultDiv);
 
-    } catch (error) {
-        document.querySelector('.loading').style.display = 'none';
-        const errorDiv = document.querySelector('#result .error-message') ||
-            document.createElement('div');
-        errorDiv.className = 'error-message';
-        errorDiv.textContent = '';
-        errorDiv.style.display = 'flex';
-        document.getElementById('result').appendChild(errorDiv);
-    }
-}
+//    } catch (error) {
+//        document.querySelector('.loading').style.display = 'none';
+//        const errorDiv = document.querySelector('#result .error-message') ||
+//            document.createElement('div');
+//        errorDiv.className = 'error-message';
+//        errorDiv.textContent = '';
+//        errorDiv.style.display = 'flex';
+//        document.getElementById('result').appendChild(errorDiv);
+//    }
+//}
 
 let dialog = document.getElementById("confirm_dialog");
 

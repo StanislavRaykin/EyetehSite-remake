@@ -49,7 +49,7 @@ namespace DahuaSiteBootstrap.Controllers
         {
             Support security = new Support();
 
-            Admin a = await _db.Admins.FindAsync(Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+            Admin a = await _db.Admins.FindAsync(int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
             if (!User.IsInRole("Owner"))
                await security.Notify(a.AdminName, true, OType.Изход);
